@@ -9,7 +9,8 @@ constexpr auto StringProxy()
       char str[std::rank_v<T>];
       constexpr bool operator==(char const* cp)
       {
-          for (unsigned i=0; i!=std::rank_v<T> && str[i]==*cp; ++i, ++cp);
+          for (unsigned i=0; i!=std::rank_v<T> && (str[i]==*cp || !*cp); ++i, ++cp)
+              if (!*cp) return false;
           return !*cp;
       }
   };
