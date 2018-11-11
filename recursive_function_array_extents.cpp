@@ -5,12 +5,10 @@ constexpr auto StringProxy()
   {
     constexpr bool operator==(char const* s)
     {
-      constexpr auto str_cmp = [](char const* cp) -> bool
-      {
         using R = decltype(T{}({}));
 
         if constexpr (sizeof(R) == 1)
-            return !*cp;
+            return !*s;
         else
         {
           T chr_cmp = [](auto const& a)
@@ -18,12 +16,10 @@ constexpr auto StringProxy()
             if (a[0] == char{sizeof(a)})
                 return R{};
             else
-                return R{[](auto const&) -> decltype(R{}({})){ return{}; }};
+                return R{[](auto const&)->decltype(R{}({})){return{};}};
           };
-          return chr_cmp({*cp})==R{} && StringProxy<R>()==cp+1;
+          return chr_cmp({*s})==R{} && StringProxy<R>()==s+1;
         }
-      };
-      return str_cmp(s);
     }
   };
   return proxy{};
