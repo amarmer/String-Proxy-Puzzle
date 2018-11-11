@@ -9,33 +9,22 @@ constexpr auto StringProxy()
       {
         using R = decltype(T{}({}));
 
-        constexpr T chr_cmp = [](auto const& a)
-        {
-          if (a[0] == char{sizeof(a) & 0xFF})
-              return R{nullptr};
-          else
-              return R{[](auto const&)
-                       ->decltype(R{}({})){return{};}};
-        };
-    
-        if (chr_cmp({*cp}) == R{nullptr})
-            return StringProxy<R>() == cp+1;
+        if constexpr (sizeof(R) == 1)
+            return !*cp;
         else
-            return false;
+        {
+          T chr_cmp = [](auto const& a)
+          {
+            if (a[0] == char{sizeof(a)})
+                return R{};
+            else
+                return R{[](auto const&) -> decltype(R{}({})){ return{}; }};
+          };
+          return chr_cmp({*cp})==R{} && StringProxy<R>()==cp+1;
+        }
       };
       return str_cmp(s);
     }
-  };
-  return proxy{};
-}
-
-// Bending the rules with a specialization to terminate recursion
-template <> 
-constexpr auto StringProxy<void*(*)(char const(&)[0x100])>() // EOS
-{
-  struct proxy
-  {
-    constexpr bool operator==(char const* s) { return *s=='\0'; }
   };
   return proxy{};
 }
@@ -54,7 +43,7 @@ static_assert(
     auto(*)(char const(&)['o'])->
     auto(*)(char const(&)['x'])->
     auto(*)(char const(&)['y'])->
-    void*(*)(char const(&)[0x100]) // EOS
+    char(*)(char const&) // EOS
   >
    () == "StringProxy", "");
 
