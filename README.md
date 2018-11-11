@@ -13,7 +13,9 @@ constexpr auto StringProxy()
   PUZZLE 
 }
 
-static_assert(StringProxy<PUZZLE>() == "StringProxy", "");
+static_assert(StringProxy<PUZZLE>() == "StringProxy");
                                                            
 int main() { return 0; }
 ```
+
+#### There are 2 solutions: [solution](https://github.com/amarmer/String-Proxy-Puzzle/blob/master/Solution.cpp) and [solution](https://github.com/amarmer/String-Proxy-Puzzle/blob/cda8da364bf271a7c0d78ce5f893642cdaded4cc/recursive_function_array_extents.cpp).
