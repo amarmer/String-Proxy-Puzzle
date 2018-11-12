@@ -18,4 +18,4 @@ static_assert(StringProxy<PUZZLE>() == "StringProxy");
 int main() { return 0; }
 ```
 
-#### There are 2 solutions (compile on Clang and GCC C++17): [solution](https://github.com/amarmer/String-Proxy-Puzzle/blob/master/Solution.cpp) and [solution](https://github.com/amarmer/String-Proxy-Puzzle/blob/cda8da364bf271a7c0d78ce5f893642cdaded4cc/recursive_function_array_extents.cpp).
+#### There are 2 solutions (compile on Clang and GCC C++17): [solution](https://github.com/amarmer/String-Proxy-Puzzle/blob/master/Solution.cpp) and [solution](https://github.com/amarmer/String-Proxy-Puzzle/blob/888f16926c583115bee57dc2f874c4e825214ea2/recursive_function_array_extents.cpp).
