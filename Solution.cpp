@@ -1,4 +1,3 @@
-
 template <typename T>
 constexpr auto StringProxy()
 {
@@ -11,10 +10,10 @@ constexpr auto StringProxy()
         if constexpr (1 == sizeof(*pArr))
           return !*s;
         else
-          return (*s++ == sizeof(*pArr)/sizeof(void*)) ? compare(compare, (decltype(**pArr + 0))nullptr) : false;
+          return (*s++ == sizeof(*pArr)/sizeof(void*)) ? compare(compare, decltype(**pArr + 0)()) : false;
       };
             
-      return compare(compare, (T)nullptr);
+      return compare(compare, T());
     }
   };
     
