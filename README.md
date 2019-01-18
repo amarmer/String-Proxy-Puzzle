@@ -1,5 +1,7 @@
 ### String Proxy Puzzle
 
+Published in https://isocpp.org/blog/2018/10/string-proxy-puzzle
+
 C-style string cannot be used as a template parameter (X<"abc">() won't compile).
 </br>It is possible for any C-style string to use it's proxy as a template parameter and reconstruct the compile-time string from it.
 Program below demonstrates it. Code can be modified only in the places where `PUZZLE` is.
