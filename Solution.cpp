@@ -12,7 +12,7 @@ constexpr auto StringProxy()
         else
           return (*s++ == sizeof(*pArr)/sizeof(void*)) ? compare(compare, decltype(**pArr + 0)()) : false;
       };
-            
+      
       return compare(compare, T());
     }
   };
